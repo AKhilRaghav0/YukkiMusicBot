@@ -1,0 +1,26 @@
+name: Deploying Using Github Actions
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+jobs:
+
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+    
+    - name: Initialization environment
+      run: |
+      sudo apt-get update
+        sudo apt-get install -y \
+        sudo apt-get install python3-pip ffmpeg -y \
+        sudo pip3 install -U pip \
+        curl -fssL https://deb.nodesource.com/setup_17.x | sudo -E bash - && sudo apt-get install nodejs -y && npm i -g npm \
+        git clone https://github.com/notreallyshikhar/YukkiMusicBot &&  cd YukkiMusicBot \
+        pip3 install -U -r requirements.txt \
+        cp sample.env .env
